@@ -21,16 +21,17 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'jlanzarotta/bufexplorer'
-NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-sensible'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'jisaacks/GitGutter'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-easytags'
 NeoBundle 'xolox/vim-misc'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'airblade/vim-gitgutter'
+
 call neobundle#end()
 
 " Required:
@@ -41,6 +42,9 @@ filetype plugin indent on
 NeoBundleCheck
 
 " ====== end NeoBundle ======
+
+" map leader to the space key
+let mapleader = "\<Space>"
 
 " Color Scheme
 syntax enable
@@ -74,6 +78,9 @@ let g:ctrlp_cmd = 'CtrlP'
 " Start Ctrl-p in regex mode
 let g:ctrlp_regexp = 1
 
+" Use leader-t for tag fuzzy searching
+nnoremap <leader>t :CtrlPTag<CR>
+
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -102,3 +109,11 @@ let g:airline_powerline_fonts = 1
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
+
+nmap <F8> :TagbarToggle<CR>
+
+" Switch between windows, maximizing the current window
+map <C-j> <C-W>j<C-W>_
+map <C-k> <C-W>k<C-W>_
+map <C-h> <C-W>h<C-W>_
+map <C-l> <C-W>l<C-W>_
