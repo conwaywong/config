@@ -18,12 +18,19 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-sensible'
 NeoBundle 'altercation/vim-colors-solarized'
-
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'jisaacks/GitGutter'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'xolox/vim-easytags'
+NeoBundle 'xolox/vim-misc'
 call neobundle#end()
 
 " Required:
@@ -34,7 +41,6 @@ filetype plugin indent on
 NeoBundleCheck
 
 " ====== end NeoBundle ======
-
 
 " Color Scheme
 syntax enable
@@ -82,3 +88,17 @@ endif
 
 " bind K to grep word under cursor
 nnoremap <leader>k :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:airline_powerline_fonts = 1
+
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
