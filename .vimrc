@@ -24,7 +24,6 @@ NeoBundle 'jlanzarotta/bufexplorer'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-sensible'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'xolox/vim-easytags'
@@ -48,7 +47,6 @@ let mapleader = "\<Space>"
 
 " Color Scheme
 syntax enable
-"set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 if has('gui_running')
@@ -56,6 +54,8 @@ if has('gui_running')
 else
     set background=dark
 endif
+
+set relativenumber
 set number
 set cursorline
 
