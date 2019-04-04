@@ -103,7 +103,8 @@ TERM xterm-termite
 
 ## Special files
 
-NORMAL 00;38;5;244 # no color code at all
+#NORMAL 00;38;5;244 # no color code at all
+NORMAL 00 # no color code at all
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
 DIR 00;38;5;33 # directory 01;34
@@ -120,7 +121,7 @@ SETUID 48;5;160;38;5;230 # file that is setuid (u+s)
 SETGID 48;5;136;38;5;230 # file that is setgid (g+s)
 CAPABILITY 30;41 # file with capability
 STICKY_OTHER_WRITABLE 48;5;64;38;5;230 # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 48;5;235;38;5;33 # dir that is other-writable (o+w) and not sticky
+OTHER_WRITABLE 00;38;5;33 # dir that is other-writable (o+w) and not sticky
 STICKY 48;5;33;38;5;230 # dir with the sticky bit set (+t) and not other-writable
 # This is for files with execute permission:
 EXEC 00;38;5;64
