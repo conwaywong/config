@@ -1,57 +1,18 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'Raimondi/delimitMate'
+Plug 'vim-airline/vim-airline'
+Plug 'xolox/vim-misc'
+Plug 'flazz/vim-colorschemes'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'Raimondi/delimitMate'
-Plugin 'vim-airline/vim-airline'
-Plugin 'xolox/vim-misc'
-Plugin 'flazz/vim-colorschemes'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Initialize plugin system
+call plug#end()
 
 " map leader to the space key
 let mapleader = "\<Space>"
@@ -120,8 +81,6 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
-nmap <F8> :TagbarToggle<CR>
 
 " Switch between windows, maximizing the current window
 map <C-j> <C-W>j
