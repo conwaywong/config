@@ -1,37 +1,58 @@
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
+" :PlugList       - lists configured plugins
+" :PlugInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PlugSearch foo - searches for foo; append `!` to refresh local cache
+" :PlugClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-fugitive'
 
-" Initialize plugin system
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" initialize plugin system
 call plug#end()
 
 " map leader to the space key
-let mapleader = "\<Space>"
+let mapleader = "\<space>"
 
-" Store swap files in fixed location, not current directory.
+" store swap files in fixed location, not current directory.
 set swapfile
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
 
-" Store temporary files in a fixed location, not current directory
+" store temporary files in a fixed location, not current directory
 set backup
 set backupdir=~/.vim/backup//,/var/tmp//,/tmp//,.
 
-" Color Scheme
+" set tab size
+set tabstop=4       " The width of a TAB is set to 4.
+                    " Still it is a \t. It is just that
+                    " Vim will interpret it to be having
+                    " a width of 4.
+set shiftwidth=4    " Indents will have a width of 4
+set softtabstop=4   " Sets the number of columns for a TAB
+set expandtab       " Expand TABs to spaces
+
+" color scheme
 syntax enable
 colorscheme badwolf
 
 set relativenumber
 set number
 set cursorline
+
+set incsearch hlsearch
 
 " Allow changing of buffers even with unsaved changes
 set hidden
@@ -50,26 +71,9 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Ctrl-p mapping
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" Start Ctrl-p in regex mode
-let g:ctrlp_regexp = 1
-
-" Use leader-t for tag fuzzy searching
-nnoremap <leader>t :CtrlPTag<CR>
-
-" The Silver Searcher
+" Use ag over grep
 if executable('ag')
-  " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " bind K to grep word under cursor
@@ -79,7 +83,7 @@ let g:airline_powerline_fonts = 1
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
+" Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Switch between windows, maximizing the current window
@@ -92,3 +96,15 @@ map <C-l> <C-W>l
 map gn :bn<cr>
 map gp :bp<cr>
 map gd :bd<cr>
+
+" PrettyPrint commands
+command! PrettyPrintJSON %!python -m json.tool
+command! PrettyPrintHTML !tidy -miq -html -wrap 0 %
+command! PrettyPrintXML !tidy -miq -xml -wrap 0 %
+
+" fzf mappings
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>l :Lines<CR>
+
