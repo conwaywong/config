@@ -12,7 +12,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#fcfcfc,spinner:#af5fff,header:#4ab0b0'
 
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+export FZF_CTRL_T_OPTS=$FZF_CTRL_T_OPTS'
     --preview '\''[[ $(file --mime {}) =~ binary ]] &&
                  echo {} is a binary file ||
                  (bat --style=numbers --color=always {} ||
