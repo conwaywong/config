@@ -1,0 +1,18 @@
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'directory' \
+  'utility' \
+  'completion' \
+  'history' \
+  'git' \
+  'spectrum' \
+  'prompt' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+
+zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal:window-title' format '%s'
+zstyle ':prezto:module:terminal:tab-title' format '%c'
+
+zstyle ':prezto:module:prompt' theme 'powerlevel10k'
