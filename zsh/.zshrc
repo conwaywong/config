@@ -5,33 +5,32 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Customize to your needs...
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
-# Turn off all beeps
-unsetopt BEEP
-
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
 
-if [ -d $HOME/.local/bin/bash-scripts ]; then
-    for s in $(find $HOME/.local/bin/bash-scripts -type f -name "*.sh"); do
-        . $s
-    done
-fi
+export EDITOR=vim
 
-# Set custom LS_COLORS
-# https://github.com/trapd00r/LS_COLORS
-[[ -s "$HOME/.local/share/lscolors.sh" ]] && source "$HOME/.local/share/lscolors.sh"
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+export PATH=$PATH:/opt/intellij/current/bin
+
+# Add specific Windows Paths to WSL2
+export PATH="/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:$PATH"

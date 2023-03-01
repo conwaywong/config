@@ -17,6 +17,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
+Plug 'Yggdroot/indentLine'
+"Plug 'dense-analysis/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -43,6 +45,8 @@ set tabstop=4       " The width of a TAB is set to 4.
 set shiftwidth=4    " Indents will have a width of 4
 set softtabstop=4   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " color scheme
 syntax enable
@@ -108,3 +112,11 @@ nmap <Leader>f :Files<CR>
 nmap <Leader>h :History<CR>
 nmap <Leader>l :Lines<CR>
 
+" indentLine character
+let g:indentLine_char = '⦙'
+
+" ALE lint error message config
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_text_changed = 'never'
