@@ -2,10 +2,12 @@
 
 ## Install required packages
 
-```bash
+```shell
 sudo apt update && sudo apt upgrade -y && \
 sudo apt install -y \
 bat \
+meld \
+podman \
 silversearcher-ag \
 vim \
 zsh
@@ -21,19 +23,19 @@ Open `.zprestorc` and change the theme to p10k.
 
 Install vim-plugged.
 
-```
+```shell
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 Copy vim configuration from this repo to the $HOME directory
 
-```
+```shell
 cp .vimrc $HOME/.vimrc
 ```
 
 Open vim, and execute `:PlugInstall`.
 
-```
+```shell
 :PlugInstall
 ```
