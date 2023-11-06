@@ -22,7 +22,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias sudo='sudo '
 alias sus='sudo su -'
-alias rmcrash='sudo rm -rf /var/crash/*'
 
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
@@ -51,6 +50,14 @@ alias p2='pushd +2 > /dev/null'
 alias p3='pushd +3 > /dev/null'
 alias p4='pushd +4 > /dev/null'
 
-[ -x /usr/bin/batcat ] && alias cat='batcat'
-[ -x /usr/bin/bashtop ] && alias top='bashtop'
-[ -x /usr/bin/fdfind ] && alias fd='fdfind'
+if command -v nvim &> /dev/null ; then
+    alias vi="nvim"
+    alias vim="nvim"
+    alias view="nvim -R"
+    alias vimdiff="nvim -d"
+fi
+
+if command -v batcat &> /dev/null ; then alias cat='batcat'; fi
+if command -v bashtop &> /dev/null ; then alias top='bashtop'; fi
+if command -v fdfind &> /dev/null ; then alias fd='fdfind'; fi
+
