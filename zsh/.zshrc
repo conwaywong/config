@@ -19,18 +19,29 @@ fi
 
 # Customize to your needs...
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f $HOME/.zsh_aliases ] && source $HOME/.zsh_aliases
-
 export EDITOR=vim
+export VISUAL=vim
 
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/conway/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/conway/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/conway/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/conway/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-export PATH=$PATH:/opt/intellij/current/bin
+export REGISTRY_AUTH_FILE=$HOME/.config/containers/auth.json
 
-# Add specific Windows Paths to WSL2
-export PATH="/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:$PATH"
