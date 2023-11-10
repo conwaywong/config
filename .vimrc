@@ -72,10 +72,13 @@ set showmode
 
 " NerdTree mapping
 map <C-n> :NERDTreeToggle<CR>
-
 " Allow NerdTree to start without path
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Use ripgrep over grep
 if executable("rg")
@@ -87,11 +90,12 @@ endif
 nnoremap <leader>k :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 let g:airline_powerline_fonts = 1
-
 " Automatically displays all buffers when there's only one tab open
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 2
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+let g:airline_theme='badwolf'
 
 " Switch between windows, maximizing the current window
 map <C-j> <C-W>j

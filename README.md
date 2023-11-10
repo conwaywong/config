@@ -15,9 +15,18 @@ fd-find \
 meld \
 podman \
 ripgrep \
+tidy \
 vim \
 zsh
 ```
+
+## Set zsh as default shell
+
+```shell
+chsh -s $(which zsh)`
+```
+
+Log out and back in.
 
 ## Configure zsh
 
