@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'scrooloose/nerdtree'
-Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -18,13 +17,16 @@ Plug 'xolox/vim-misc'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
-"Plug 'dense-analysis/ale'
+Plug 'ryanoasis/vim-devicons'
+Plug 'moll/vim-bbye'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " initialize plugin system
 call plug#end()
+
+set encoding=UTF-8
 
 " map leader to the space key
 let mapleader = "\<space>"
@@ -75,9 +77,10 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Use ag over grep
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+" Use ripgrep over grep
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+  set grepformat=%f:%l:%c:%m
 endif
 
 " bind K to grep word under cursor
@@ -99,7 +102,7 @@ map <C-l> <C-W>l
 " Buffers - next/previous/delete
 map gn :bn<cr>
 map gp :bp<cr>
-map gd :bd<cr>
+map gd :Bdelete<cr>
 
 " PrettyPrint commands
 command! PrettyPrintJSON %!python -m json.tool
@@ -115,8 +118,3 @@ nmap <Leader>l :Lines<CR>
 " indentLine character
 let g:indentLine_char = '⦙'
 
-" ALE lint error message config
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_sign_error = '✘'
-let g:ale_sign_warning = '⚠'
-let g:ale_lint_on_text_changed = 'never'

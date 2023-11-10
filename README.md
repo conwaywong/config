@@ -1,14 +1,20 @@
 # WSL2 Initialization Guide
 
+## Prerequisites
+
+- Windows with a Nerdfont configured for the terminal
+    - [Consolas NF](https://github.com/wclr/my-nerd-fonts/tree/master/Consolas%20NF)
+
 ## Install required packages
 
 ```shell
 sudo apt update && sudo apt upgrade -y && \
 sudo apt install -y \
 bat \
+fd-find \
 meld \
 podman \
-silversearcher-ag \
+ripgrep \
 vim \
 zsh
 ```
@@ -25,13 +31,14 @@ Install vim-plugged.
 
 ```shell
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+    && mkdir .vim/swap .vim/backup
 ```
 
-Copy vim configuration from this repo to the $HOME directory
+Copy configuration files from this repo to the $HOME directory
 
 ```shell
-cp .vimrc $HOME/.vimrc
+cp .vimrc $HOME  && cp zsh/.zsh_aliases $HOME
 ```
 
 Open vim, and execute `:PlugInstall`.
