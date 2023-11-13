@@ -8,20 +8,21 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'dense-analysis/ale'
+Plug 'flazz/vim-colorschemes'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'moll/vim-bbye'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'xolox/vim-misc'
-Plug 'flazz/vim-colorschemes'
-Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
-Plug 'ryanoasis/vim-devicons'
-Plug 'moll/vim-bbye'
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 " initialize plugin system
 call plug#end()
@@ -57,7 +58,6 @@ colorscheme badwolf
 set relativenumber
 set number
 set cursorline
-
 set incsearch hlsearch
 
 " Allow changing of buffers even with unsaved changes
@@ -122,3 +122,28 @@ nmap <Leader>l :Lines<CR>
 " indentLine character
 let g:indentLine_char = '⦙'
 
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = ''
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_linters_explicit            = 1
+let g:ale_lint_on_text_changed        = 'never'
+let g:ale_lint_on_enter               = 0
+let g:ale_lint_on_save                = 1
+let g:ale_fix_on_save                 = 1
+
+let g:ale_linters = {
+\   'markdown': ['markdownlint'],
+\   'json': ['jq'],
+\   'xml': ['xmllint'],
+\}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'markdown': ['prettier'],
+\   'json': ['prettier'],
+\   'xml': ['prettier'],
+\}
+
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
