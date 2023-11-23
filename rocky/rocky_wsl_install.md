@@ -1,11 +1,11 @@
-# Fedora WSL Install
+# Rocky Linux WSL Install
 
 ## Install OS
 
-Download and extract tar.xz file from https://kojipkgs.fedoraproject.org/packages/Fedora-Container-Base/
+Download base image from https://docs.rockylinux.org/guides/interoperability/import_rocky_to_wsl/
 
 ```shell
-wsl --import <Distribution Name> <Install dir> <tar file>
+wsl --import <Distribution Name> <Install dir> <tar.xz file>
 ```
 
 ## Set up distro
@@ -14,6 +14,12 @@ Open new distribution
 
 ```shell
 wsl --distribution <Distribution Name>
+```
+
+Install minimum packages
+
+```shell
+dnf install -y sudo systemd git man-pages man-db man vim
 ```
 
 Add `conway` user and add to sudo group.
@@ -46,26 +52,25 @@ Restart distribution from Windows shell.
 wsl -t <Distribution Name>
 ```
 
-## Set up repos
+Create SSH key
 
 ```shell
-sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-dnf distro-sync
+ssh-keygen -t ed25519 -C "$(whoami)-$HOSTNAME-<distro>"
 ```
 
-### Enable optional repos
+## Set up repos
+
+### Enable EPEL repo
 
 ```shell
-sudo dnf config-manager --set-enabled powertools
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --set-enabled crb
 sudo dnf install epel-release
-sudo dnf install dnf-plugins-core
-
 sudo dnf makecache --refresh
 ```
 
-### Install necessary packages
+## Install necessary packages
 
 ```shell
-sudo dnf install fd-find git jq npm meld bpytop ripgrep tidy tmux util-linux-user vim zsh -y
+sudo dnf install -y fd-find git jq npm meld ripgrep tidy tmux util-linux-user vim which zsh 
 ```
