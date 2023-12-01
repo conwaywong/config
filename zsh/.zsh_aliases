@@ -29,17 +29,14 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 
-# update on one command 
-alias update='sudo apt update && sudo apt upgrade -y'
+# update on one command
+if command -v apt &> /dev/null ; then alias update='sudo apt update && sudo apt upgrade -y'; fi
+if command -v dnf &> /dev/null ; then alias update='sudo dnf makecache && sudo dnf -y update && sudo dnf autoremove'; fi
 
 # which history
 alias h='history | head -n -1 | grep'
 
 alias mkdir='mkdir -pv'
-
-# screen commands
-alias sl='screen -list'
-alias sr='screen -R'
 
 # pushd/popd
 alias d='dirs -v'
@@ -50,14 +47,6 @@ alias p2='pushd +2 > /dev/null'
 alias p3='pushd +3 > /dev/null'
 alias p4='pushd +4 > /dev/null'
 
-if command -v nvim &> /dev/null ; then
-    alias vi="nvim"
-    alias vim="nvim"
-    alias view="nvim -R"
-    alias vimdiff="nvim -d"
-fi
-
 if command -v batcat &> /dev/null ; then alias cat='batcat'; fi
-if command -v bashtop &> /dev/null ; then alias top='bashtop'; fi
+if command -v bpytop &> /dev/null ; then alias top='bpytop'; fi
 if command -v fdfind &> /dev/null ; then alias fd='fdfind'; fi
-

@@ -72,5 +72,19 @@ sudo dnf makecache --refresh
 ## Install necessary packages
 
 ```shell
-sudo dnf install -y fd-find git jq npm meld ripgrep tidy tmux util-linux-user vim which zsh 
+sudo dnf install -y bat fd-find git jq npm meld podman procps ripgrep tidy tmux util-linux-user vim which zsh 
+```
+
+## Misc Notes
+
+### Podman
+
+On default install of Rocky 9.3, trying to use podman for the first time gives an error like this:
+
+    > Error: cannot set up namespace using "/usr/bin/newuidmap": exit status 1
+
+The problem can be fixed by reinstalling `shadow-utils`:
+
+```shell
+sudo dnf reinstall shadow-utils
 ```
