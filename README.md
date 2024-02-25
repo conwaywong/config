@@ -20,6 +20,7 @@ npm \
 podman \
 ripgrep \
 tidy \
+tmux \
 vim \
 zsh
 ```
