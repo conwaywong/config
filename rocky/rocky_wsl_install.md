@@ -4,9 +4,13 @@
 
 Download base image from https://docs.rockylinux.org/guides/interoperability/import_rocky_to_wsl/
 
+Microsoft instructions to import Linux distro: https://learn.microsoft.com/en-us/windows/wsl/use-custom-distro#import-the-tar-file-into-wsl
+
 ```shell
 wsl --import <Distribution Name> <Install dir> <tar.xz file>
 ```
+
+A good `<Install dir>` is `%userprofile%\AppData\Local\RockyLinux`
 
 ## Set up distro
 
@@ -69,7 +73,7 @@ sudo dnf install epel-release
 sudo dnf makecache --refresh
 ```
 
-## Install necessary packages
+## Install optional packages
 
 ```shell
 sudo dnf install -y bat fd-find git jq npm meld podman procps ripgrep tidy tmux util-linux-user vim which zsh 
