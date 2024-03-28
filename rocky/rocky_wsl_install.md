@@ -23,15 +23,14 @@ wsl --distribution <Distribution Name>
 Install minimum packages
 
 ```shell
-dnf install -y sudo systemd git man-pages man-db man vim
+dnf install -y sudo systemd git man-pages man-db man vim passwd
 ```
 
 Add `conway` user and add to sudo group.
 
 ```shell
 user=conway
-useradd $user
-passwd $user
+useradd $user && passwd $user
 gpasswd -a $user wheel
 ```
 
@@ -65,6 +64,14 @@ ssh-keygen -t ed25519 -C "$(whoami)-$HOSTNAME-<distro>"
 ## Set up repos
 
 ### Enable EPEL repo
+
+#### Rocky8
+
+```shell
+sudo dnf install epel-release epel-next-release
+```
+
+#### Rocky9
 
 ```shell
 sudo dnf install 'dnf-command(config-manager)'
