@@ -59,6 +59,7 @@ set relativenumber
 set number
 set cursorline
 set incsearch hlsearch
+set scrolloff=4
 
 " Allow changing of buffers even with unsaved changes
 set hidden
